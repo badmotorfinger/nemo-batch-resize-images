@@ -9,17 +9,33 @@ This extension adds a "Batch resize images" option to the Nemo file manager cont
 ## Features
 
 - **Batch Processing**: Resize multiple images simultaneously
-- **Common Resolutions**: Choose from 20+ predefined resolutions including:
-  - Standard ratios (4:3): VGA, SVGA, XGA, SXGA, UXGA
-  - Widescreen (16:9): HD 720p, Full HD 1080p, QHD 1440p, 4K UHD
+- **Common Resolutions**: Choose from 28 predefined resolutions including:
+  - Standard ratios (4:3): QVGA, VGA, SVGA, XGA, SXGA, UXGA
+  - Widescreen (16:9): FWVGA, HD 720p, Full HD 1080p, QHD 1440p, 4K UHD
   - Square formats: 480x480 to 2000x2000
   - Portrait orientations: 3:4 and 9:16 ratios
-- **Smart Resizing**: Automatically maintains aspect ratio while resizing images to fit within specified dimensions
+- **Smart Resizing**: Maintains aspect ratio while shrinking images to fit within the selected dimensions. Images already smaller than the target are left unchanged (no upscaling).
 - **Progress Tracking**: Visual progress bar with file-by-file status
 - **Internationalization**: Multi-language support (English, Spanish, French, Italian, and more)
-- **File Validation**: Automatically skips non-image files with warnings
+- **File Validation**: Automatically skips non-image files and reports any that could not be resized
 
 ## Installation
+
+### Quick install (recommended)
+
+Run the install script. It installs any missing dependencies and copies the action into your Nemo actions directory:
+
+```bash
+./install.sh
+```
+
+The script auto-detects your package manager (`apt`, `dnf`, `yum`, `pacman`, or `zypper`) and installs only the dependencies you are missing. Installing packages requires `sudo`. After it finishes, restart Nemo to load the action:
+
+```bash
+nemo -q
+```
+
+### Manual installation
 
 1. Copy the entire `batch-resize-images` folder to your Nemo actions directory:
    ```bash
@@ -40,13 +56,14 @@ This extension requires the following tools to be installed:
 - `zenity` - For GUI dialogs
 - `convert` (ImageMagick) - For image processing
 - `file` - For MIME type detection
-- `xargs` - For command processing
-- `pdftoppm` - For PDF support
+- `gettext` - For translated dialog text
 
 Install dependencies on Ubuntu/Debian:
 ```bash
-sudo apt install zenity imagemagick file findutils poppler-utils
+sudo apt install zenity imagemagick file gettext-base
 ```
+
+The included `install.sh` installs these automatically on the supported package managers, so you only need this step if you prefer installing them by hand.
 
 ## Screenshots
 
@@ -64,7 +81,7 @@ sudo apt install zenity imagemagick file findutils poppler-utils
 4. Click OK to start the batch resize process
 5. Resized images will be saved with the format: `originalname_resolution.extension`
 
-**Note**: The resizing process automatically maintains the original aspect ratio of your images, ensuring they fit within the selected dimensions without distortion.
+**Note**: The resizing process maintains the original aspect ratio of your images and only shrinks images larger than the selected dimensions. Images that are already smaller than the target are left at their original size (no enlargement), even though the output file is still named with the chosen resolution suffix.
 
 ## Supported Formats
 

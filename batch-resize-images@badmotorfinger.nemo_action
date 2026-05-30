@@ -29,4 +29,4 @@ Icon-Name=image
 Selection=notnone
 Mimetypes=image/*;
 Quote=double
-Dependencies=zenity;convert;file;xargs;pdftoppm;
+Dependencies=zenity;convert;file;

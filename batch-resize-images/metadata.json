@@ -1,7 +1,7 @@
 {
     "description": "Batch resizing of images to common resolutions",
     "uuid": "batch-resize-images@badmotorfinger",
-    "name": "Batch Resize Images",
+    "name": "Batch resize images",
     "author": "badmotorfinger",
     "version": "1.0.0",
     "last-edited": 1744545000
